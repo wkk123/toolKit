@@ -1,0 +1,200 @@
+/* index.wxss */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f5f7fa 0%, #e8ecf1 100%);
+  padding: 0;
+}
+
+/* 标题区域 */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 60rpx 40rpx 80rpx;
+  color: #fff;
+}
+
+.header-content {
+  text-align: center;
+}
+
+.app-title {
+  display: block;
+  font-size: 52rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.app-desc {
+  display: block;
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+/* 主要功能按钮区域 */
+.main-actions {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.action-btn {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  border-left: 6rpx solid;
+  transition: transform 0.2s;
+}
+
+.action-btn:active {
+  transform: scale(0.98);
+}
+
+.action-icon {
+  font-size: 64rpx;
+  margin-right: 30rpx;
+}
+
+.action-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.action-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.action-desc {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 信息流广告位 */
+.ad-banner-inline {
+  margin: 0 40rpx 30rpx;
+  background-color: #fff9e6;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  border: 2rpx dashed #ffa502;
+  position: relative;
+}
+
+.ad-label {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  font-size: 20rpx;
+  color: #999;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.ad-content {
+  padding-top: 10rpx;
+}
+
+.ad-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 菜单项区域 */
+.menu-section {
+  padding: 0 40rpx 40rpx;
+  background-color: #fff;
+  margin: 0 40rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 40rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  position: relative;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:active {
+  background-color: #f8f8f8;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+  margin-right: 30rpx;
+}
+
+.menu-title {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.menu-badge {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: #fff;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  margin-right: 10rpx;
+}
+
+/* 文字链广告（专业版按钮旁） */
+.ad-text-link {
+  margin-right: 10rpx;
+}
+
+.ad-link-text {
+  font-size: 24rpx;
+  color: #ff6b6b;
+  text-decoration: underline;
+}
+
+.menu-arrow {
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+/* 底部横幅广告 */
+.ad-banner-bottom {
+  margin: 40rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  position: relative;
+  height: 400rpx; /* 480×200px 转换为 rpx，约 400rpx */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx dashed #e0e0e0;
+}
+
+.ad-banner-content {
+  text-align: center;
+  padding: 40rpx;
+}
+
+.ad-banner-text {
+  display: block;
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.ad-banner-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #ccc;
+}

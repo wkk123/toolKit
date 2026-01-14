@@ -1,0 +1,20 @@
+<!--color-test.wxml-->
+<view class="container" style="background-color: {{colors[currentColorIndex].value}}" bindtap="switchColor">
+  <!-- 全屏显示颜色，点击切换 -->
+</view>
+
+<!-- 提示弹框 -->
+<view wx:if="{{showTip}}" class="tip-modal" catchtap="closeTip">
+  <view class="tip-content" catchtap="true">
+    <view class="tip-header">
+      <text class="tip-title">提示</text>
+      <text class="tip-close" bindtap="closeTip">×</text>
+    </view>
+    <view class="tip-body">
+      <text class="tip-text">点击屏幕完成颜色切换</text>
+    </view>
+    <view class="tip-footer">
+      <button class="tip-btn" bindtap="closeTip">知道了</button>
+    </view>
+  </view>
+</view>

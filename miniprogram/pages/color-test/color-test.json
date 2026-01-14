@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "颜色测试",
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#FF0000",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {}
+}
+

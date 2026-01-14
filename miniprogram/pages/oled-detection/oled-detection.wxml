@@ -1,0 +1,124 @@
+<!--oled-detection.wxml-->
+<view class="container">
+  <!-- 导航栏 -->
+  <view class="navbar">
+    <view class="nav-back" bindtap="prevStep">
+      <text class="nav-back-icon">←</text>
+    </view>
+    <text class="nav-title">OLED检测 第{{currentStep + 1}}/{{totalSteps}}步</text>
+  </view>
+
+  <!-- 重要提示 -->
+  <view class="warning-box">
+    <text class="warning-icon">⚠️</text>
+    <view class="warning-content">
+      <text class="warning-title">重要提示</text>
+      <text class="warning-text">请在亮度50%+环境下</text>
+      <text class="warning-text">每个测试持续30秒</text>
+    </view>
+  </view>
+
+  <!-- 测试内容区域 -->
+  <view class="test-content-area">
+    <!-- 纯色检测 -->
+    <view wx:if="{{testSteps[currentStep].type === 'color-test'}}" class="test-display color-test" style="background-color: {{testSteps[currentStep].colors[testSteps[currentStep].currentColorIndex]}}" bindtap="switchColor">
+      <view class="test-info">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+        <text class="test-tip">点击切换颜色</text>
+      </view>
+    </view>
+
+    <!-- 残影测试 -->
+    <view wx:elif="{{testSteps[currentStep].type === 'burn-in-test'}}" class="test-display burn-in-test" bindtap="switchBurnInPattern">
+      <view wx:if="{{testSteps[currentStep].pattern === 'checkerboard'}}" class="checkerboard-pattern"></view>
+      <view wx:else class="black-pattern"></view>
+      <view class="test-info">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+        <text class="test-tip">点击切换模式</text>
+      </view>
+    </view>
+
+    <!-- UI元素模拟 -->
+    <view wx:elif="{{testSteps[currentStep].type === 'ui-simulation'}}" class="test-display ui-simulation">
+      <view class="status-bar">
+        <text class="status-time">9:41</text>
+        <view class="status-icons">
+          <text>📶</text>
+          <text>📶</text>
+          <text>🔋</text>
+        </view>
+      </view>
+      <view class="ui-content">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+      </view>
+      <view class="nav-bar">
+        <text>◀</text>
+        <text>●</text>
+        <text>□</text>
+      </view>
+    </view>
+
+    <!-- 灰度渐变 -->
+    <view wx:elif="{{testSteps[currentStep].type === 'grayscale'}}" class="test-display grayscale-test">
+      <view class="grayscale-gradient"></view>
+      <view class="test-info">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+      </view>
+    </view>
+
+    <!-- 文字残影 -->
+    <view wx:elif="{{testSteps[currentStep].type === 'text-burn'}}" class="test-display text-burn-test">
+      <view class="scrolling-text">
+        <text class="scroll-text-item">这是一段测试文字，用于检测OLED屏幕的文字残影问题</text>
+        <text class="scroll-text-item">这是一段测试文字，用于检测OLED屏幕的文字残影问题</text>
+        <text class="scroll-text-item">这是一段测试文字，用于检测OLED屏幕的文字残影问题</text>
+      </view>
+      <view class="test-info">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 倒计时 -->
+  <view class="countdown-box">
+    <text class="countdown-text">剩余时间：{{countdown}}秒</text>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <button class="btn btn-issue" bindtap="reportIssue">发现问题</button>
+    <button class="btn btn-normal" bindtap="nextStep">正常，继续</button>
+  </view>
+
+  <!-- 插屏广告 -->
+  <view wx:if="{{false}}" class="interstitial-ad">
+    <view class="ad-overlay" bindtap="closeInterstitialAd">
+      <view class="ad-content" catchtap="true">
+        <view class="ad-header">
+          <text class="ad-label">广告</text>
+          <text class="ad-close" bindtap="closeInterstitialAd">×</text>
+        </view>
+        <view class="ad-body">
+          <text class="ad-title">插屏广告</text>
+          <text class="ad-desc">(开始下一个测试前)</text>
+          <button class="ad-close-btn" bindtap="closeInterstitialAd">关闭广告</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 小贴士 -->
+  <view class="tips-section">
+    <view class="tips-header">
+      <text class="tips-icon">💡</text>
+      <text class="tips-title">小贴士：</text>
+    </view>
+    <text class="tips-question">如何预防OLED烧屏？</text>
+    <button class="tips-btn" bindtap="viewPrevention">查看预防指南</button>
+  </view>
+</view>

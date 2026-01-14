@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/screen-type/screen-type",
+    "pages/quick-test/quick-test",
+    "pages/color-test/color-test",
+    "pages/oled-detection/oled-detection",
+    "pages/lcd-detection/lcd-detection",
+    "pages/report/report",
+    "pages/prevention/prevention",
+    "pages/history/history",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "屏幕检测",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents"
+}

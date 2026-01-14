@@ -1,0 +1,70 @@
+<!--screen-type.wxml-->
+<scroll-view class="container" scroll-y>
+  <!-- 品牌选择区域 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-icon">❓</text>
+      <view class="section-title-group">
+        <text class="section-title">不确定屏幕类型？</text>
+        <text class="section-subtitle">根据设备品牌选择：</text>
+      </view>
+    </view>
+
+    <view class="brand-list">
+      <view 
+        class="brand-item" 
+        wx:for="{{brands}}" 
+        wx:key="id"
+        data-brand="{{item}}"
+        bindtap="selectBrand"
+      >
+        <text class="brand-icon">{{item.icon}}</text>
+        <text class="brand-name">{{item.name}}</text>
+        <text class="brand-arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 手动选择技术类型 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-icon">🔍</text>
+      <text class="section-title">手动选择技术：</text>
+    </view>
+
+    <view class="tech-list">
+      <view 
+        class="tech-item" 
+        wx:for="{{techTypes}}" 
+        wx:key="id"
+        data-type="{{item.id}}"
+        bindtap="selectTechType"
+      >
+        <view class="tech-header">
+          <text class="tech-icon">{{item.icon}}</text>
+          <view class="tech-info">
+            <text class="tech-name">{{item.name}}</text>
+            <text class="tech-desc">{{item.desc}}</text>
+          </view>
+        </view>
+        <view class="tech-detail">
+          <text class="tech-detail-text">- {{item.detail}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 激励视频广告 -->
+  <view class="ad-section" wx:if="{{false}}">
+    <view class="ad-header">
+      <text class="ad-title">激励视频广告</text>
+    </view>
+    <view class="ad-content">
+      <text class="ad-question">跳过广告直接检测？</text>
+      <view class="ad-actions">
+        <button class="ad-btn skip-btn" bindtap="skipAd">跳过广告</button>
+        <button class="ad-btn watch-btn" bindtap="watchAd">观看广告跳过等待</button>
+      </view>
+    </view>
+  </view>
+</scroll-view>

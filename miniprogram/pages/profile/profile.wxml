@@ -1,0 +1,34 @@
+<!--profile.wxml-->
+<view class="container">
+  <view class="user-section">
+    <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    <text class="nickname">{{userInfo.nickName}}</text>
+  </view>
+
+  <view class="stats-section">
+    <view class="stat-item">
+      <text class="stat-value">{{stats.totalTests}}</text>
+      <text class="stat-label">检测次数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.issueCount}}</text>
+      <text class="stat-label">发现问题</text>
+    </view>
+  </view>
+
+  <scroll-view class="menu-section" scroll-y>
+    <view 
+      class="menu-item" 
+      wx:for="{{menuItems}}" 
+      wx:key="title"
+      data-item="{{item}}"
+      bindtap="navigateTo"
+    >
+      <text class="menu-icon">{{item.icon}}</text>
+      <text class="menu-title">{{item.title}}</text>
+      <text class="menu-arrow">></text>
+    </view>
+  </scroll-view>
+</view>
+

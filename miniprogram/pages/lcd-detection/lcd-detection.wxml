@@ -1,0 +1,104 @@
+<!--lcd-detection.wxml-->
+<view class="container">
+  <!-- 导航栏 -->
+  <view class="navbar">
+    <view class="nav-back" bindtap="prevStep">
+      <text class="nav-back-icon">←</text>
+    </view>
+    <text class="nav-title">LCD检测 第{{currentStep + 1}}/{{totalSteps}}步</text>
+  </view>
+
+  <!-- 环境建议 -->
+  <view class="environment-tip">
+    <text class="tip-icon">🌙</text>
+    <view class="tip-content">
+      <text class="tip-title">环境建议</text>
+      <text class="tip-text">请在暗室环境中检测</text>
+    </view>
+  </view>
+
+  <!-- 测试内容区域 -->
+  <view class="test-content-area">
+    <!-- 背光均匀度检测 -->
+    <view wx:if="{{testSteps[currentStep].type === 'backlight-uniformity'}}" class="test-display backlight-test" style="background-color: {{testSteps[currentStep].color}}">
+      <view class="test-info">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+        <text class="test-instruction">观察屏幕是否有亮度不均匀的区域</text>
+      </view>
+    </view>
+
+    <!-- 漏光检测 -->
+    <view wx:elif="{{testSteps[currentStep].type === 'light-bleed'}}" class="test-display light-bleed-test" style="background-color: {{testSteps[currentStep].color}}">
+      <view class="test-info">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+        <text class="test-instruction">在暗室环境下观察屏幕边缘是否有光线泄漏</text>
+      </view>
+    </view>
+
+    <!-- 坏点检测 -->
+    <view wx:elif="{{testSteps[currentStep].type === 'dead-pixel'}}" class="test-display dead-pixel-test" style="background-color: {{testSteps[currentStep].colors[testSteps[currentStep].currentColorIndex]}}" bindtap="switchDeadPixelColor">
+      <view class="test-info">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+        <text class="test-instruction">点击切换颜色：黑白红绿蓝</text>
+        <text class="test-tip">仔细观察是否有异常点</text>
+      </view>
+    </view>
+
+    <!-- 色彩均匀度检测 -->
+    <view wx:elif="{{testSteps[currentStep].type === 'color-uniformity'}}" class="test-display color-uniformity-test" style="background-color: {{testSteps[currentStep].colors[testSteps[currentStep].currentColorIndex]}}" bindtap="switchColorUniformity">
+      <view class="test-info">
+        <text class="test-step-title">[{{testSteps[currentStep].id}}. {{testSteps[currentStep].title}}]</text>
+        <text class="test-step-desc">{{testSteps[currentStep].desc}}</text>
+        <text class="test-instruction">点击切换颜色，检查色彩是否均匀</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <button class="btn btn-issue" bindtap="reportIssue">发现问题</button>
+    <button class="btn btn-normal" bindtap="nextStep">正常，继续</button>
+  </view>
+
+  <!-- 视频广告 -->
+  <view wx:if="{{false}}" class="video-ad">
+    <view class="ad-overlay">
+      <view class="ad-content">
+        <view class="ad-header">
+          <text class="ad-label">视频广告</text>
+          <text class="ad-countdown">({{videoAdCountdown}}秒后自动跳过)</text>
+        </view>
+        <view class="ad-body">
+          <text class="ad-placeholder">📺 视频广告播放区域</text>
+          <text class="ad-desc">这里是视频广告内容</text>
+        </view>
+        <view class="ad-footer">
+          <button class="ad-skip-btn" bindtap="skipVideoAd">跳过广告</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- LCD修复工具 -->
+  <view class="tools-section">
+    <view class="tools-header">
+      <text class="tools-icon">🛠️</text>
+      <text class="tools-title">LCD修复工具</text>
+    </view>
+    <view class="tools-list">
+      <view class="tool-item" bindtap="openDeadPixelFix">
+        <text class="tool-icon">🔧</text>
+        <text class="tool-name">坏点修复软件推荐</text>
+        <text class="tool-arrow">></text>
+      </view>
+      <view class="tool-item" bindtap="openScreenCalibration">
+        <text class="tool-icon">🎨</text>
+        <text class="tool-name">屏幕校准工具</text>
+        <text class="tool-arrow">></text>
+      </view>
+    </view>
+  </view>
+</view>

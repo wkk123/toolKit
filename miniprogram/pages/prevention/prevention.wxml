@@ -1,0 +1,100 @@
+<!--prevention.wxml-->
+<scroll-view class="container" scroll-y>
+  <!-- 标题 -->
+  <view class="header">
+    <text class="header-title">📖 屏幕保养指南</text>
+  </view>
+
+  <!-- 屏幕类型选择 -->
+  <view class="type-selector">
+    <text class="selector-label">按屏幕类型查看：</text>
+    <view class="selector-buttons">
+      <button 
+        class="selector-btn {{selectedType === 'oled' ? 'active' : ''}}"
+        data-type="oled"
+        bindtap="selectType"
+      >
+        OLED保养
+      </button>
+      <button 
+        class="selector-btn {{selectedType === 'lcd' ? 'active' : ''}}"
+        data-type="lcd"
+        bindtap="selectType"
+      >
+        LCD保养
+      </button>
+    </view>
+  </view>
+
+  <!-- OLED防烧屏 -->
+  <view wx:if="{{selectedType === 'oled'}}" class="guide-section oled-section">
+    <view class="section-header">
+      <text class="section-icon">🔥</text>
+      <text class="section-title">OLED防烧屏：</text>
+    </view>
+    <view class="tips-list">
+      <view class="tip-item" wx:for="{{oledTips}}" wx:key="index">
+        <text class="tip-bullet">•</text>
+        <text class="tip-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- LCD保养 -->
+  <view wx:if="{{selectedType === 'lcd'}}" class="guide-section lcd-section">
+    <view class="section-header">
+      <text class="section-icon">💡</text>
+      <text class="section-title">LCD保养：</text>
+    </view>
+    <view class="tips-list">
+      <view class="tip-item" wx:for="{{lcdTips}}" wx:key="index">
+        <text class="tip-bullet">•</text>
+        <text class="tip-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 实用工具 -->
+  <view class="tools-section">
+    <view class="section-header">
+      <text class="section-icon">🛠️</text>
+      <text class="section-title">实用工具：</text>
+    </view>
+    <view class="tools-list">
+      <view 
+        class="tool-item" 
+        wx:for="{{tools}}" 
+        wx:key="name"
+        data-tool="{{item}}"
+        bindtap="viewTool"
+      >
+        <text class="tool-icon">{{item.icon}}</text>
+        <view class="tool-info">
+          <text class="tool-name">{{item.name}}</text>
+          <text class="tool-desc">{{item.desc}}</text>
+        </view>
+        <text class="tool-arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 信息流广告 -->
+  <view wx:if="{{false}}" class="banner-ad">
+    <view class="ad-label">广告</view>
+    <view class="ad-content">
+      <text class="ad-text">信息流广告 (工具推荐区域)</text>
+    </view>
+  </view>
+
+  <!-- 升级专业版 -->
+  <!-- <view class="pro-section" wx:if="{{false}}">
+    <view class="pro-header">
+      <text class="pro-icon">⭐</text>
+      <view class="pro-info">
+        <text class="pro-title">升级专业版</text>
+        <text class="pro-desc">获取更多保养功能</text>
+      </view>
+    </view>
+    <button class="pro-upgrade-btn" bindtap="upgradePro">立即升级</button>
+  </view> -->
+</scroll-view>

@@ -1,0 +1,283 @@
+/* quick-test.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 40rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 标题 */
+.header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 进度条和剩余时间 */
+.progress-section {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 16rpx;
+  background-color: #e0e0e0;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-right: 20rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s;
+  border-radius: 8rpx;
+}
+
+.progress-text {
+  font-size: 28rpx;
+  color: #667eea;
+  font-weight: bold;
+  min-width: 80rpx;
+}
+
+.time-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 10rpx;
+}
+
+.time-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #ff6b6b;
+}
+
+/* 当前测试 */
+.current-test {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx 40rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.test-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.test-icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.test-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.test-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 测试显示区域 */
+.test-display {
+  min-height: 400rpx;
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.gradient-bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #000 0%, #333 25%, #666 50%, #999 75%, #fff 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.test-content {
+  position: relative;
+  z-index: 1;
+  padding: 40rpx;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.test-desc {
+  font-size: 28rpx;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20rpx 30rpx;
+  border-radius: 16rpx;
+}
+
+/* 观察提示 */
+.observations {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx 40rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.observations-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.observations-icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.observations-label {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.observations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.observation-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.observation-bullet {
+  font-size: 28rpx;
+  color: #667eea;
+  margin-right: 15rpx;
+  font-weight: bold;
+}
+
+.observation-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 操作按钮 */
+.actions {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.btn {
+  flex: 1;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  padding: 24rpx;
+  border: none;
+}
+
+.btn-no-issue {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.btn-has-issue {
+  background-color: #ff4757;
+  color: #fff;
+}
+
+/* 横幅广告 */
+.banner-ad {
+  background-color: #fff9e6;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+  border: 2rpx dashed #ffa502;
+  position: relative;
+}
+
+.ad-label {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  font-size: 20rpx;
+  color: #999;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.ad-content {
+  padding-top: 10rpx;
+  text-align: center;
+}
+
+.ad-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 控制按钮 */
+.controls {
+  display: flex;
+  gap: 20rpx;
+}
+
+.control-btn {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  border: 2rpx solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+}
+
+.control-icon {
+  font-size: 32rpx;
+}
+
+.control-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.pause-btn:active,
+.skip-btn:active {
+  background-color: #f8f8f8;
+}
