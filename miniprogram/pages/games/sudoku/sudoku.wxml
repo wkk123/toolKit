@@ -1,0 +1,105 @@
+<!--sudoku.wxml-->
+<view class="container">
+  <!-- 游戏信息栏 -->
+  <view class="game-header">
+    <view class="info-section">
+      <view class="info-item">
+        <text class="info-label">时间</text>
+        <text class="info-value">{{timeDisplay}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">错误</text>
+        <text class="info-value">{{errors}}</text>
+      </view>
+    </view>
+    <view class="difficulty-section">
+      <view 
+        class="difficulty-btn {{difficulty === 'easy' ? 'active' : ''}}"
+        data-difficulty="easy"
+        bindtap="onDifficultyChange"
+      >
+        简单
+      </view>
+      <view 
+        class="difficulty-btn {{difficulty === 'medium' ? 'active' : ''}}"
+        data-difficulty="medium"
+        bindtap="onDifficultyChange"
+      >
+        中等
+      </view>
+      <view 
+        class="difficulty-btn {{difficulty === 'hard' ? 'active' : ''}}"
+        data-difficulty="hard"
+        bindtap="onDifficultyChange"
+      >
+        困难
+      </view>
+    </view>
+    <view class="game-controls">
+      <button 
+        wx:if="{{gameStatus === 'ready' || gameStatus === 'completed'}}" 
+        class="control-btn start-btn" 
+        bindtap="{{gameStatus === 'ready' ? 'startGame' : 'restart'}}"
+      >
+        {{gameStatus === 'ready' ? '开始' : '重新开始'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 数独网格 -->
+  <view class="game-area">
+    <view class="sudoku-grid">
+      <view 
+        class="sudoku-row"
+        wx:for="{{grid}}" 
+        wx:key="row-{{index}}"
+        wx:for-index="rowIndex"
+      >
+        <view 
+          class="sudoku-cell {{item[colIndex].isFixed ? 'fixed' : ''}} {{item[colIndex].isError ? 'error' : ''}} {{selectedCell && selectedCell.row === rowIndex && selectedCell.col === colIndex ? 'selected' : ''}} {{(rowIndex + 1) % 3 === 0 && rowIndex < 8 ? 'border-bottom' : ''}} {{(colIndex + 1) % 3 === 0 && colIndex < 8 ? 'border-right' : ''}}"
+          wx:for="{{item}}" 
+          wx:key="cell-{{rowIndex}}-{{colIndex}}"
+          wx:for-index="colIndex"
+          data-row="{{rowIndex}}"
+          data-col="{{colIndex}}"
+          bindtap="onCellTap"
+        >
+          <text class="cell-value" wx:if="{{item.value !== 0}}">{{item.value}}</text>
+          <view class="cell-notes" wx:else>
+            <text 
+              class="note-item"
+              wx:for="{{item.notes}}" 
+              wx:key="note-{{index}}"
+              wx:for-item="note"
+            >
+              {{note}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数字输入区 -->
+  <view class="input-section">
+    <view class="number-pad">
+      <view 
+        class="number-btn"
+        wx:for="{{[1,2,3,4,5,6,7,8,9]}}" 
+        wx:key="num-{{item}}"
+        data-number="{{item}}"
+        bindtap="onNumberTap"
+      >
+        {{item}}
+      </view>
+      <view class="number-btn clear-btn" bindtap="clearCell">
+        清除
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-tips">
+    <text class="tips-text">💡 点击单元格选择，点击数字输入，每行、每列、每个3x3格子不能有重复数字！</text>
+  </view>
+</view>

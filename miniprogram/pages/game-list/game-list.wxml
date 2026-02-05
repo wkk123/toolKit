@@ -1,0 +1,43 @@
+<!--game-list.wxml-->
+<scroll-view class="container" scroll-y>
+  <!-- 标题区域 -->
+  <view class="header">
+    <view class="header-content">
+      <text class="page-title">🎮 小游戏中心</text>
+      <text class="page-desc">精选小游戏，轻松娱乐</text>
+    </view>
+  </view>
+
+  <!-- 游戏列表 -->
+  <view class="game-list">
+    <view 
+      class="game-item" 
+      wx:for="{{games}}" 
+      wx:key="id"
+      data-game-id="{{item.id}}"
+      bindtap="onGameTap"
+      style="border-left-color: {{item.color}}"
+    >
+      <view class="game-icon-wrapper" style="background: linear-gradient(135deg, {{item.color}} 0%, {{item.color}}dd 100%);">
+        <text class="game-icon">{{item.icon}}</text>
+      </view>
+      <view class="game-content">
+        <view class="game-header">
+          <text class="game-title">{{item.title}}</text>
+          <view wx:if="{{item.status === 'coming-soon'}}" class="game-badge">
+            <text class="badge-text">即将上线</text>
+          </view>
+        </view>
+        <text class="game-desc">{{item.desc}}</text>
+      </view>
+      <view class="game-arrow">
+        <text class="arrow-icon">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="footer-tip">
+    <text class="tip-text">更多游戏正在开发中...</text>
+  </view>
+</scroll-view>

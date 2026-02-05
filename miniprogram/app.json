@@ -1,14 +1,19 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/screen-type/screen-type",
-    "pages/quick-test/quick-test",
     "pages/color-test/color-test",
+    "pages/game-list/game-list",
+    "pages/games/snake/snake",
+    "pages/games/tetris/tetris",
+    "pages/games/flappy/flappy",
+    "pages/games/memory/memory",
+    "pages/games/sudoku/sudoku",
+    "pages/games/minesweeper/minesweeper",
+    "pages/games/tang-poetry/tang-poetry",
     "pages/oled-detection/oled-detection",
     "pages/lcd-detection/lcd-detection",
     "pages/report/report",
     "pages/prevention/prevention",
-    "pages/history/history",
     "pages/profile/profile"
   ],
   "window": {

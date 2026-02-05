@@ -1,0 +1,117 @@
+<!--tang-poetry.wxml-->
+<view class="container">
+  <!-- 游戏信息栏 -->
+  <view class="game-header">
+    <view class="info-section">
+      <view class="info-item">
+        <text class="info-label">进度</text>
+        <text class="info-value">{{currentPoemIndex + 1}}/{{totalPoems}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">得分</text>
+        <text class="info-value">{{score}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">时间</text>
+        <text class="info-value">{{timeDisplay}}</text>
+      </view>
+    </view>
+    <view class="difficulty-section">
+      <view 
+        class="difficulty-btn {{difficulty === 'easy' ? 'active' : ''}}"
+        data-difficulty="easy"
+        bindtap="onDifficultyChange"
+      >
+        简单
+      </view>
+      <view 
+        class="difficulty-btn {{difficulty === 'medium' ? 'active' : ''}}"
+        data-difficulty="medium"
+        bindtap="onDifficultyChange"
+      >
+        中等
+      </view>
+      <view 
+        class="difficulty-btn {{difficulty === 'hard' ? 'active' : ''}}"
+        data-difficulty="hard"
+        bindtap="onDifficultyChange"
+      >
+        困难
+      </view>
+    </view>
+    <view class="game-controls">
+      <button 
+        wx:if="{{gameStatus === 'ready' || gameStatus === 'completed'}}" 
+        class="control-btn start-btn" 
+        bindtap="{{gameStatus === 'ready' ? 'startGame' : 'restart'}}"
+      >
+        {{gameStatus === 'ready' ? '开始' : '重新开始'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 诗歌内容 -->
+  <view class="poem-section" wx:if="{{currentQuestion}}">
+    <view class="poem-header">
+      <text class="poem-title">{{currentQuestion.poem.title}}</text>
+      <text class="poem-author">{{currentQuestion.poem.author}}</text>
+    </view>
+    
+    <view class="poem-content" wx:if="{{currentQuestion && currentQuestion.displayLines && currentQuestion.displayLines.length > 0}}">
+      <view 
+        class="poem-line"
+        wx:for="{{currentQuestion.displayLines}}" 
+        wx:for-item="line"
+        wx:for-index="lineIndex"
+        wx:key="line-{{lineIndex}}"
+      >
+        <view class="line-content" wx:if="{{line && line.length > 0}}">
+          <view 
+            class="poem-word {{word.isBlank ? 'blank' : ''}} {{word.isBlank && word.text ? 'filled' : ''}}"
+            wx:for="{{line}}" 
+            wx:for-item="word"
+            wx:for-index="wordIndex"
+            wx:key="word-{{lineIndex}}-{{wordIndex}}"
+          >
+            <text class="word-text">{{word.text}}</text>
+          </view>
+        </view>
+        <text class="poem-punctuation" wx:if="{{currentQuestion.displayLines && lineIndex < currentQuestion.displayLines.length}}">
+          {{ lineIndex % 2 === 0 ? '，' : '。' }}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 选项区域 -->
+  <view class="options-section" wx:if="{{currentQuestion && currentQuestion.blanks.length > 0}}">
+    <view 
+      class="blank-group"
+      wx:for="{{currentQuestion.blanks}}" 
+      wx:for-item="blank"
+      wx:for-index="blankIndex"
+      wx:key="blank-{{blankIndex}}"
+    >
+      <view class="blank-label">第{{blankIndex + 1}}个空：</view>
+      <view class="options-grid">
+        <view 
+          class="option-btn {{currentQuestion.userAnswers[blankIndex] === option ? 'selected' : ''}}"
+          wx:for="{{currentQuestion.options[blankIndex]}}" 
+          wx:for-item="option"
+          wx:for-index="optionIndex"
+          wx:key="option-{{blankIndex}}-{{optionIndex}}"
+          data-blank-index="{{blankIndex}}"
+          data-option-index="{{optionIndex}}"
+          bindtap="onOptionTap"
+        >
+          {{option}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-tips">
+    <text class="tips-text">💡 选择正确的字词补全诗句，完成所有诗歌即可通关！</text>
+  </view>
+</view>

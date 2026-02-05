@@ -1,0 +1,49 @@
+<!--flappy.wxml-->
+<view class="container">
+  <!-- 游戏信息栏 -->
+  <view class="game-header">
+    <view class="score-info">
+      <view class="score-item">
+        <text class="score-label">得分</text>
+        <text class="score-value">{{score}}</text>
+      </view>
+      <view class="score-item">
+        <text class="score-label">最高分</text>
+        <text class="score-value">{{highScore}}</text>
+      </view>
+    </view>
+    <view class="game-controls">
+      <button 
+        wx:if="{{gameStatus === 'ready' || gameStatus === 'gameover'}}" 
+        class="control-btn start-btn" 
+        bindtap="{{gameStatus === 'ready' ? 'startGame' : 'restart'}}"
+      >
+        {{gameStatus === 'ready' ? '开始' : '重新开始'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 游戏画布 -->
+  <view class="game-area">
+    <canvas 
+      type="2d" 
+      id="gameCanvas" 
+      class="game-canvas"
+      style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+      bindtap="onCanvasTap"
+    ></canvas>
+    
+    <!-- 游戏状态遮罩 -->
+    <view wx:if="{{gameStatus === 'ready'}}" class="game-overlay">
+      <view class="overlay-content">
+        <text class="overlay-title">🐦 像素鸟</text>
+        <text class="overlay-desc">点击屏幕让鸟飞起来</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-tips">
+    <text class="tips-text">点击屏幕控制小鸟飞行，避开绿色管道，看你能飞多远！</text>
+  </view>
+</view>

@@ -1,0 +1,147 @@
+/* game-list.wxss */
+.container {
+  min-height: 100vh;
+  padding: 0;
+  background: linear-gradient(180deg, #f5f7fa 0%, #e8ecf1 100%);
+}
+
+/* 标题区域 */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 60rpx 40rpx 40rpx;
+  color: #fff;
+}
+
+.header-content {
+  text-align: center;
+}
+
+.page-title {
+  display: block;
+  font-size: 52rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.page-desc {
+  display: block;
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+/* 游戏列表 */
+.game-list {
+  padding: 40rpx 40rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.game-item {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  border-left: 6rpx solid;
+  transition: transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.game-item:active {
+  transform: scale(0.98);
+}
+
+.game-item:active::before {
+  opacity: 1;
+}
+
+/* 游戏图标 */
+.game-icon-wrapper {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+.game-icon {
+  font-size: 56rpx;
+}
+
+/* 游戏内容 */
+.game-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.game-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 16rpx;
+}
+
+.game-badge {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+}
+
+.badge-text {
+  font-size: 20rpx;
+  color: #fff;
+}
+
+.game-desc {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 1.5;
+}
+
+/* 箭头 */
+.game-arrow {
+  margin-left: 20rpx;
+}
+
+.arrow-icon {
+  font-size: 48rpx;
+  color: #ccc;
+  font-weight: 300;
+}
+
+/* 底部提示 */
+.footer-tip {
+  padding: 40rpx;
+  text-align: center;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: #999;
+}

@@ -4,20 +4,6 @@ Page({
     // 主要功能按钮
     mainActions: [
       {
-        icon: '🔍',
-        title: '开始检测',
-        desc: '选择屏幕类型进行专业检测',
-        action: 'startTest',
-        color: '#667eea'
-      },
-      {
-        icon: '⚡',
-        title: '快速检测',
-        desc: '不确定屏幕类型？快速检测',
-        action: 'quickTest',
-        color: '#f5576c'
-      },
-      {
         icon: '🎨',
         title: '颜色测试',
         desc: '全屏显示纯色，检查是否有色斑',
@@ -25,11 +11,11 @@ Page({
         color: '#43e97b'
       },
       {
-        icon: '📋',
-        title: '查看历史',
-        desc: '查看以往的检测记录',
-        action: 'history',
-        color: '#4facfe'
+        icon: '🎮',
+        title: '小游戏',
+        desc: '精选小游戏，轻松娱乐',
+        action: 'gameList',
+        color: '#ff6b6b'
       }
     ],
     // 菜单项（已移除：我的设备、检测记录、使用指南）
@@ -61,24 +47,14 @@ Page({
   handleMainAction(e: any) {
     const action = e.currentTarget.dataset.action
     switch (action) {
-      case 'startTest':
-        wx.navigateTo({
-          url: '/pages/screen-type/screen-type'
-        })
-        break
-      case 'quickTest':
-        wx.navigateTo({
-          url: '/pages/quick-test/quick-test'
-        })
-        break
       case 'colorTest':
         wx.navigateTo({
           url: '/pages/color-test/color-test'
         })
         break
-      case 'history':
+      case 'gameList':
         wx.navigateTo({
-          url: '/pages/history/history'
+          url: '/pages/game-list/game-list'
         })
         break
     }

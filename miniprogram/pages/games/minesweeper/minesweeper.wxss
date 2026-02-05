@@ -1,0 +1,222 @@
+/* minesweeper.wxss */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-header {
+  width: 100%;
+  max-width: 750rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.info-section {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120rpx;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.info-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #4facfe;
+}
+
+.difficulty-section {
+  display: flex;
+  justify-content: center;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.difficulty-btn {
+  padding: 12rpx 30rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  background: #f0f0f0;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.difficulty-btn.active {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: #fff;
+  box-shadow: 0 4rpx 15rpx rgba(79, 172, 254, 0.3);
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.control-btn {
+  padding: 16rpx 60rpx;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border: none;
+  color: #fff;
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.3);
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.game-area {
+  width: 100%;
+  max-width: 750rpx;
+  margin-bottom: 30rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.minesweeper-grid {
+  display: grid;
+  gap: 2rpx;
+  background: #999;
+  border: 4rpx solid #666;
+  border-radius: 10rpx;
+  padding: 2rpx;
+  margin: 0 auto;
+}
+
+.mine-cell {
+  display: contents;
+}
+
+.cell {
+  aspect-ratio: 1;
+  min-width: 40rpx;
+  min-height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c0c0c0;
+  border: 2rpx outset #e0e0e0;
+  font-size: 24rpx;
+  font-weight: bold;
+  transition: all 0.1s;
+  position: relative;
+}
+
+.cell:active {
+  border: 2rpx inset #e0e0e0;
+  transform: scale(0.95);
+}
+
+.cell-hidden {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
+}
+
+.cell-flagged {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.cell-question {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-weight: bold;
+}
+
+.cell-revealed {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  border: 1rpx solid #999;
+}
+
+.cell-number {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.cell-mine {
+  font-size: 32rpx;
+}
+
+/* 数字颜色 */
+.number-1 {
+  color: #0000ff;
+}
+
+.number-2 {
+  color: #008000;
+}
+
+.number-3 {
+  color: #ff0000;
+}
+
+.number-4 {
+  color: #000080;
+}
+
+.number-5 {
+  color: #800000;
+}
+
+.number-6 {
+  color: #008080;
+}
+
+.number-7 {
+  color: #000000;
+}
+
+.number-8 {
+  color: #808080;
+}
+
+.game-tips {
+  width: 100%;
+  max-width: 750rpx;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15rpx;
+  text-align: center;
+}
+
+.tips-text {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.6;
+}

@@ -1,0 +1,143 @@
+<!--tetris.wxml-->
+<view class="container">
+  <!-- 游戏信息栏 -->
+  <view class="game-header">
+    <view class="info-section">
+      <view class="info-item">
+        <text class="info-label">得分</text>
+        <text class="info-value">{{score}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">行数</text>
+        <text class="info-value">{{lines}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">等级</text>
+        <text class="info-value">{{level}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">最高分</text>
+        <text class="info-value">{{highScore}}</text>
+      </view>
+    </view>
+    <view class="game-controls">
+      <button 
+        wx:if="{{gameStatus === 'ready' || gameStatus === 'paused'}}" 
+        class="control-btn start-btn" 
+        bindtap="{{gameStatus === 'ready' ? 'startGame' : 'resumeGame'}}"
+      >
+        {{gameStatus === 'ready' ? '开始' : '继续'}}
+      </button>
+      <button 
+        wx:if="{{gameStatus === 'playing'}}" 
+        class="control-btn pause-btn" 
+        bindtap="pauseGame"
+      >
+        暂停
+      </button>
+      <button 
+        wx:if="{{gameStatus === 'gameover'}}" 
+        class="control-btn restart-btn" 
+        bindtap="restart"
+      >
+        重新开始
+      </button>
+    </view>
+  </view>
+
+  <!-- 游戏区域 -->
+  <view class="game-area">
+    <view class="main-game">
+      <canvas 
+        type="2d" 
+        id="gameCanvas" 
+        class="game-canvas"
+        style="width: {{boardWidth * cellSize}}px; height: {{boardHeight * cellSize}}px;"
+      ></canvas>
+      
+      <!-- 游戏状态遮罩 -->
+      <view wx:if="{{gameStatus === 'ready'}}" class="game-overlay">
+        <view class="overlay-content">
+          <text class="overlay-title">🧩 俄罗斯方块</text>
+          <text class="overlay-desc">点击开始游戏</text>
+        </view>
+      </view>
+      <view wx:if="{{gameStatus === 'paused'}}" class="game-overlay">
+        <view class="overlay-content">
+          <text class="overlay-title">⏸ 游戏暂停</text>
+          <text class="overlay-desc">点击继续游戏</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 侧边栏 -->
+    <view class="sidebar">
+      <!-- 下一个方块预览 -->
+      <view class="preview-section">
+        <text class="preview-title">下一个</text>
+        <view class="preview-box">
+          <canvas 
+            type="2d" 
+            id="previewCanvas" 
+            class="preview-canvas"
+            style="width: 200px; height: 200px;"
+          ></canvas>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 控制按钮 -->
+  <view class="control-panel">
+    <view class="control-row">
+      <button 
+        class="control-button rotate-btn" 
+        data-action="rotate"
+        bindtap="onControl"
+      >
+        🔄 旋转
+      </button>
+      <button 
+        class="control-button drop-btn" 
+        data-action="drop"
+        bindtap="onControl"
+      >
+        ⬇ 快速下落
+      </button>
+    </view>
+    <view class="control-row">
+      <button 
+        class="control-button left-btn" 
+        data-action="left"
+        bindtap="onControl"
+        bindtouchstart="onControlTouchStart"
+        bindtouchend="onControlTouchEnd"
+      >
+        ← 左
+      </button>
+      <button 
+        class="control-button down-btn" 
+        data-action="down"
+        bindtap="onControl"
+        bindtouchstart="onControlTouchStart"
+        bindtouchend="onControlTouchEnd"
+      >
+        ↓ 下
+      </button>
+      <button 
+        class="control-button right-btn" 
+        data-action="right"
+        bindtap="onControl"
+        bindtouchstart="onControlTouchStart"
+        bindtouchend="onControlTouchEnd"
+      >
+        → 右
+      </button>
+    </view>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-tips">
+    <text class="tips-text">使用控制按钮移动和旋转方块，消除完整行得分</text>
+  </view>
+</view>

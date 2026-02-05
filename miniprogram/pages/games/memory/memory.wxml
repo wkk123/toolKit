@@ -1,0 +1,53 @@
+<!--memory.wxml-->
+<view class="container">
+  <!-- 游戏信息栏 -->
+  <view class="game-header">
+    <view class="info-section">
+      <view class="info-item">
+        <text class="info-label">得分</text>
+        <text class="info-value">{{score}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">移动次数</text>
+        <text class="info-value">{{moves}}</text>
+      </view>
+    </view>
+    <view class="game-controls">
+      <button 
+        wx:if="{{gameStatus === 'ready' || gameStatus === 'gameover'}}" 
+        class="control-btn start-btn" 
+        bindtap="{{gameStatus === 'ready' ? 'startGame' : 'restart'}}"
+      >
+        {{gameStatus === 'ready' ? '开始' : '重新开始'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 游戏区域 -->
+  <view class="game-area">
+    <view class="cards-grid">
+      <view 
+        class="card {{item.flipped ? 'flipped' : ''}} {{item.matched ? 'matched' : ''}}"
+        wx:for="{{cards}}" 
+        wx:key="id"
+        data-card-id="{{item.id}}"
+        bindtap="onCardTap"
+        style="width: {{cellSize}}px; height: {{cellSize}}px; min-width: {{cellSize}}px; min-height: {{cellSize}}px;"
+      >
+        <view class="card-inner">
+          <view class="card-front">
+            <text class="card-icon">❓</text>
+          </view>
+          <view class="card-back">
+            <text class="card-icon-large">{{item.icon}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-tips">
+    <text class="tips-text">点击卡片翻开，找出相同的图标配对，考验你的记忆力！</text>
+  </view>
+</view>

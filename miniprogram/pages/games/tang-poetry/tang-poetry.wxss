@@ -1,0 +1,256 @@
+/* tang-poetry.wxss */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-header {
+  width: 100%;
+  max-width: 750rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.info-section {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100rpx;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.info-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.difficulty-section {
+  display: flex;
+  justify-content: center;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.difficulty-btn {
+  padding: 12rpx 30rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  background: #f0f0f0;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.difficulty-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  box-shadow: 0 4rpx 15rpx rgba(102, 126, 234, 0.3);
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.control-btn {
+  padding: 16rpx 60rpx;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border: none;
+  color: #fff;
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.3);
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.poem-section {
+  width: 100%;
+  max-width: 750rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.poem-header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.poem-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.poem-author {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.poem-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  line-height: 1.8;
+}
+
+.poem-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.line-content {
+  display: inline-flex;
+  flex-wrap: nowrap;
+}
+
+.poem-word {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 4rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid #dde3f0;
+  background: #f9fbff;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.poem-word .word-text {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 1;
+  display: block;
+}
+
+.poem-word.blank {
+  border-style: dashed;
+  border-color: #667eea;
+  background: #f0f3ff;
+}
+
+.poem-word.blank.filled {
+  border-style: solid;
+  border-color: #667eea;
+  background: #e3f2fd;
+}
+
+.poem-word.blank.filled .word-text {
+  color: #667eea;
+  font-weight: bold;
+}
+
+.poem-punctuation {
+  font-size: 32rpx;
+  margin-left: 8rpx;
+  color: #333;
+}
+
+.blank-placeholder {
+  color: #999;
+  font-size: 32rpx;
+}
+
+.options-section {
+  width: 100%;
+  max-width: 750rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.blank-group {
+  margin-bottom: 30rpx;
+}
+
+.blank-group:last-child {
+  margin-bottom: 0;
+}
+
+.blank-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  font-weight: bold;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+
+.option-btn {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  border-radius: 15rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #667eea;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  border: 3rpx solid transparent;
+}
+
+.option-btn:active {
+  transform: scale(0.95);
+}
+
+.option-btn.selected {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border-color: #667eea;
+  box-shadow: 0 4rpx 15rpx rgba(102, 126, 234, 0.3);
+}
+
+.game-tips {
+  width: 100%;
+  max-width: 750rpx;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15rpx;
+  text-align: center;
+}
+
+.tips-text {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.6;
+}

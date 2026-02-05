@@ -1,0 +1,85 @@
+<!--minesweeper.wxml-->
+<view class="container">
+  <!-- 游戏信息栏 -->
+  <view class="game-header">
+    <view class="info-section">
+      <view class="info-item">
+        <text class="info-label">地雷</text>
+        <text class="info-value">{{minesRemaining}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">时间</text>
+        <text class="info-value">{{timeDisplay}}</text>
+      </view>
+    </view>
+    <view class="difficulty-section">
+      <view 
+        class="difficulty-btn {{difficulty === 'easy' ? 'active' : ''}}"
+        data-difficulty="easy"
+        bindtap="onDifficultyChange"
+      >
+        简单
+      </view>
+      <view 
+        class="difficulty-btn {{difficulty === 'medium' ? 'active' : ''}}"
+        data-difficulty="medium"
+        bindtap="onDifficultyChange"
+      >
+        中等
+      </view>
+      <view 
+        class="difficulty-btn {{difficulty === 'hard' ? 'active' : ''}}"
+        data-difficulty="hard"
+        bindtap="onDifficultyChange"
+      >
+        困难
+      </view>
+    </view>
+    <view class="game-controls">
+      <button 
+        wx:if="{{gameStatus === 'ready' || gameStatus === 'gameover' || gameStatus === 'win'}}" 
+        class="control-btn start-btn" 
+        bindtap="restart"
+      >
+        {{gameStatus === 'ready' ? '开始' : '重新开始'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 游戏网格 -->
+  <view class="game-area">
+    <view class="minesweeper-grid" style="grid-template-columns: repeat({{gridCols}}, 1fr);">
+      <view 
+        class="cell {{item.state === 'revealed' && item.adjacentMines > 0 ? 'number-' + item.adjacentMines : ''}} {{item.state === 'revealed' ? 'revealed' : ''}} {{item.state === 'flagged' ? 'flagged' : ''}} {{item.state === 'question' ? 'question' : ''}} {{item.isMine && item.state === 'revealed' ? 'mine' : ''}}"
+        wx:for="{{flatGrid}}" 
+        wx:key="cell-{{item.row}}-{{item.col}}"
+        data-row="{{item.row}}"
+        data-col="{{item.col}}"
+        bindtap="onCellTap"
+        bindlongpress="onCellLongPress"
+      >
+        <!-- 隐藏状态 -->
+        <view wx:if="{{item.state === 'hidden'}}" class="cell-hidden"></view>
+        
+        <!-- 标记状态 -->
+        <view wx:elif="{{item.state === 'flagged'}}" class="cell-flagged">🚩</view>
+        
+        <!-- 疑问状态 -->
+        <view wx:elif="{{item.state === 'question'}}" class="cell-question">?</view>
+        
+        <!-- 已展开状态 -->
+        <view wx:elif="{{item.state === 'revealed'}}" class="cell-revealed">
+          <!-- 地雷 -->
+          <text wx:if="{{item.isMine}}" class="cell-mine">💣</text>
+          <!-- 数字 -->
+          <text wx:elif="{{item.adjacentMines > 0}}" class="cell-number">{{item.adjacentMines}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-tips">
+    <text class="tips-text">💡 点击展开格子，长按标记地雷，展开所有非地雷格子即可胜利！</text>
+  </view>
+</view>

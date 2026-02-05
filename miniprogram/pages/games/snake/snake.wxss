@@ -1,0 +1,175 @@
+/* snake.wxss */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f0c29 0%, #302b63 100%);
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 游戏信息栏 */
+.game-header {
+  width: 100%;
+  max-width: 750rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.score-info {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-label {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8rpx;
+}
+
+.score-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #4facfe;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.control-btn {
+  padding: 16rpx 60rpx;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border: none;
+  color: #fff;
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.3);
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.pause-btn {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.restart-btn {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* 游戏区域 */
+.game-area {
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.5);
+}
+
+.game-canvas {
+  display: block;
+  border-radius: 10rpx;
+}
+
+/* 游戏状态遮罩 */
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5rpx);
+}
+
+.overlay-content {
+  text-align: center;
+}
+
+.overlay-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.overlay-desc {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 方向控制 */
+.direction-controls {
+  width: 100%;
+  max-width: 750rpx;
+  margin-bottom: 30rpx;
+}
+
+.control-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.direction-btn {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 48rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+}
+
+.direction-btn:active {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0.95);
+}
+
+.up-btn {
+  margin-bottom: 20rpx;
+}
+
+/* 游戏说明 */
+.game-tips {
+  width: 100%;
+  max-width: 750rpx;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15rpx;
+  text-align: center;
+}
+
+.tips-text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}

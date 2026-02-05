@@ -7,11 +7,6 @@ Page({
     },
     menuItems: [
       {
-        icon: '📋',
-        title: '历史记录',
-        url: '/pages/history/history'
-      },
-      {
         icon: '📖',
         title: '预防指南',
         url: '/pages/prevention/prevention'

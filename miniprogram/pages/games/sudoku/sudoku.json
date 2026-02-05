@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "数独",
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#667eea",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {}
+}

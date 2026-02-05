@@ -1,0 +1,104 @@
+<!--snake.wxml-->
+<view class="container">
+  <!-- 游戏信息栏 -->
+  <view class="game-header">
+    <view class="score-info">
+      <view class="score-item">
+        <text class="score-label">得分</text>
+        <text class="score-value">{{score}}</text>
+      </view>
+      <view class="score-item">
+        <text class="score-label">最高分</text>
+        <text class="score-value">{{highScore}}</text>
+      </view>
+    </view>
+    <view class="game-controls">
+      <button 
+        wx:if="{{gameStatus === 'ready' || gameStatus === 'paused'}}" 
+        class="control-btn start-btn" 
+        bindtap="{{gameStatus === 'ready' ? 'startGame' : 'resumeGame'}}"
+      >
+        {{gameStatus === 'ready' ? '开始' : '继续'}}
+      </button>
+      <button 
+        wx:if="{{gameStatus === 'playing'}}" 
+        class="control-btn pause-btn" 
+        bindtap="pauseGame"
+      >
+        暂停
+      </button>
+      <button 
+        wx:if="{{gameStatus === 'gameover'}}" 
+        class="control-btn restart-btn" 
+        bindtap="restart"
+      >
+        重新开始
+      </button>
+    </view>
+  </view>
+
+  <!-- 游戏画布 -->
+  <view class="game-area">
+    <canvas 
+      type="2d" 
+      id="gameCanvas" 
+      class="game-canvas"
+      style="width: {{gridSize * cellSize}}px; height: {{gridSize * cellSize}}px;"
+    ></canvas>
+    
+    <!-- 游戏状态遮罩 -->
+    <view wx:if="{{gameStatus === 'ready'}}" class="game-overlay">
+      <view class="overlay-content">
+        <text class="overlay-title">🐍 贪吃蛇</text>
+        <text class="overlay-desc">点击开始游戏</text>
+      </view>
+    </view>
+    <view wx:if="{{gameStatus === 'paused'}}" class="game-overlay">
+      <view class="overlay-content">
+        <text class="overlay-title">⏸ 游戏暂停</text>
+        <text class="overlay-desc">点击继续游戏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 方向控制按钮 -->
+  <view class="direction-controls">
+    <view class="control-row">
+      <button 
+        class="direction-btn up-btn" 
+        data-direction="up"
+        bindtap="changeDirection"
+      >
+        ↑
+      </button>
+    </view>
+    <view class="control-row">
+      <button 
+        class="direction-btn left-btn" 
+        data-direction="left"
+        bindtap="changeDirection"
+      >
+        ←
+      </button>
+      <button 
+        class="direction-btn down-btn" 
+        data-direction="down"
+        bindtap="changeDirection"
+      >
+        ↓
+      </button>
+      <button 
+        class="direction-btn right-btn" 
+        data-direction="right"
+        bindtap="changeDirection"
+      >
+        →
+      </button>
+    </view>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-tips">
+    <text class="tips-text">使用方向键控制蛇的移动，吃到红色食物可以增长并得分</text>
+  </view>
+</view>
