@@ -289,10 +289,8 @@ Page({
         if (res.confirm) {
           this.nextLevel()
         } else {
-          // 返回首页
-          wx.reLaunch({
-            url: '/pages/index/index'
-          })
+          // 返回上一页
+          wx.navigateBack()
         }
       }
     })
@@ -323,10 +321,6 @@ Page({
       success: (res) => {
         if (res.confirm) {
           this.initGame()
-        } else {
-          // 返回上一页
-          wx.navigateBack()
-        }
         } else {
           // 返回上一页
           wx.navigateBack()
