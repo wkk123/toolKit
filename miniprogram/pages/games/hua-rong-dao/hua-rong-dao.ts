@@ -324,9 +324,12 @@ Page({
         if (res.confirm) {
           this.initGame()
         } else {
-          wx.reLaunch({
-            url: '/pages/index/index'
-          })
+          // 返回上一页
+          wx.navigateBack()
+        }
+        } else {
+          // 返回上一页
+          wx.navigateBack()
         }
       }
     })

@@ -604,9 +604,8 @@ Page({
         if (res.confirm) {
           this.nextLevel()
         } else if (res.cancel) {
-          wx.reLaunch({
-            url: '/pages/index/index'
-          })
+          // 返回上一页
+          wx.navigateBack()
         }
       }
     })
@@ -644,9 +643,8 @@ Page({
           })
           this.initGame()
         } else if (res.cancel) {
-          wx.reLaunch({
-            url: '/pages/index/index'
-          })
+          // 返回上一页
+          wx.navigateBack()
         }
       }
     })

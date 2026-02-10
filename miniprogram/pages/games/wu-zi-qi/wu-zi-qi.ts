@@ -365,9 +365,8 @@ Page({
           // 下一局：重新初始化棋盘
           this.initGame()
         } else if (res.cancel) {
-          wx.reLaunch({
-            url: '/pages/index/index'
-          })
+          // 返回上一页
+          wx.navigateBack()
         }
       }
     })
