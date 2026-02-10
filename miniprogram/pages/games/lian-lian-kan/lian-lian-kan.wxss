@@ -1,0 +1,130 @@
+.container {
+  min-height: 100vh;
+  padding: 32rpx;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #ffb347 0%, #ffcc33 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-top: 40rpx;
+  text-align: center;
+  color: #ffffff;
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  opacity: 0.9;
+}
+
+.info-bar {
+  margin-top: 24rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 60rpx;
+  color: #ffffff;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.value {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.board {
+  margin-top: 40rpx;
+  width: 650rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 24rpx;
+  padding: 20rpx;
+  box-shadow: 0 16rpx 40rpx rgba(0, 0, 0, 0.2);
+  display: grid;
+  gap: 16rpx;
+  box-sizing: border-box;
+}
+
+.tile {
+  height: 120rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.12);
+  transition: transform 0.1s, background 0.1s, box-shadow 0.1s;
+}
+
+.tile.normal:active {
+  transform: scale(0.95);
+}
+
+.tile.selected {
+  background: #ffe082;
+  box-shadow: 0 8rpx 20rpx rgba(255, 193, 7, 0.6);
+}
+
+.tile.removed {
+  opacity: 0;
+}
+
+/* 路径高亮：用内发光和描边模拟连线效果 */
+.tile.path {
+  background: #fff8e1;
+  box-shadow:
+    0 0 0 4rpx #ffca28 inset,
+    0 0 18rpx rgba(255, 202, 40, 0.9);
+}
+
+.buttons {
+  margin-top: 40rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  min-width: 320rpx;
+  padding: 0 80rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #ffe0b2 100%);
+  color: #ff9800;
+  font-size: 30rpx;
+  font-weight: 700;
+  box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.btn:active {
+  transform: scale(0.95) translateY(2rpx);
+  box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.2);
+}
+
+.tips {
+  margin-top: 32rpx;
+  font-size: 24rpx;
+  color: #ffffff;
+  opacity: 0.9;
+  text-align: center;
+  padding: 0 40rpx;
+}
+

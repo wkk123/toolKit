@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="header">
+    <view class="title">连连看</view>
+    <view class="subtitle">找到两张相同图案即可消除</view>
+  </view>
+
+  <view class="info-bar">
+    <view class="info-item">
+      <text class="label">关卡</text>
+      <text class="value">{{level}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">难度</text>
+      <text class="value">{{difficulty}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">步数</text>
+      <text class="value">{{moves}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">剩余时间</text>
+      <text class="value">{{timeLeft}}s</text>
+    </view>
+  </view>
+
+  <view class="board" style="grid-template-columns: repeat({{cols}}, 1fr);">
+    <view
+      class="tile {{item.status}} {{pathIndices.indexOf(index) >= 0 ? 'path' : ''}}"
+      wx:for="{{tiles}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="onTileTap"
+    >
+      <text wx:if="{{item.status !== 'removed'}}">{{item.icon}}</text>
+    </view>
+  </view>
+
+  <view class="buttons">
+    <button class="btn" bindtap="restart">重新开始</button>
+  </view>
+
+  <view class="tips">
+    <text>提示：点击两张相同图案的牌即可消除，遵循连连看连线规则（最多两次拐弯）。通关后可以继续挑战下一关，关卡无限。</text>
+  </view>
+</view>
+

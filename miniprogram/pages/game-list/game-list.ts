@@ -16,7 +16,7 @@ Page({
         title: '俄罗斯方块',
         desc: '经典消除游戏，考验你的策略能力',
         color: '#43e97b',
-        status: 'available'
+        status: 'hidden'
       },
       {
         id: 'flappy',
@@ -24,7 +24,7 @@ Page({
         title: '像素鸟',
         desc: '简单有趣的飞行游戏，看你能飞多远',
         color: '#fa709a',
-        status: 'available'
+        status: 'hidden' // hidden, coming-soon, available
       },
       {
         id: 'memory',
@@ -57,7 +57,31 @@ Page({
         desc: '补全诗句，重温经典唐诗',
         color: '#667eea',
         status: 'available'
-      }
+      },
+      {
+        id: 'hua-rong-dao',
+        icon: '🧩',
+        title: '华容道',
+        desc: '经典华容道拼图，考验你的空间想象力',
+        color: '#ff9a9e',
+        status: 'available'
+      },
+      {
+        id: 'wu-zi-qi',
+        icon: '⚫',
+        title: '五子棋',
+        desc: '经典五子棋游戏，连成五子即可获胜',
+        color: '#667eea',
+        status: 'available'
+      },
+      {
+        id: 'lian-lian-kan',
+        icon: '🔗',
+        title: '连连看',
+        desc: '经典连连看游戏，消除所有图案',
+        color: '#ffb347',
+        status: 'available'
+      },
     ]
   },
 
@@ -71,6 +95,9 @@ Page({
     const game = this.data.games.find((g: any) => g.id === gameId)
     
     if (!game) return
+
+    // 隐藏状态的游戏不处理点击
+    if (game.status === 'hidden') return
 
     if (game.status === 'coming-soon') {
       wx.showToast({

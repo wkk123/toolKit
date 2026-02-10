@@ -1,0 +1,50 @@
+<view class="container">
+  <view class="header">
+    <view class="title">华容道</view>
+    <view class="subtitle">滑动方块，让数字恢复顺序</view>
+  </view>
+
+  <view class="info-bar">
+    <view class="info-item">
+      <text class="label">关卡</text>
+      <text class="value">{{level}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">步数</text>
+      <text class="value">{{moves}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">难度</text>
+      <text class="value">{{difficulty}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">剩余时间</text>
+      <text class="value">{{timeLeft}} s</text>
+    </view>
+  </view>
+
+  <!-- 棋盘根据 size 动态变化 -->
+  <view
+    class="board"
+    style="grid-template-columns: repeat({{size}}, 1fr); grid-template-rows: repeat({{size}}, 1fr);"
+  >
+    <view
+      class="tile {{item === null ? 'empty' : ''}} {{isCompleted ? 'completed' : ''}}"
+      wx:for="{{tiles}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="onTileTap"
+    >
+      <text class="tile-text" wx:if="{{item !== null}}">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="buttons">
+    <button class="btn" bindtap="restart">重新开始</button>
+  </view>
+
+  <view class="tips">
+    <text>提示：空白格相邻的数字方块可以滑动，把数字按顺序排好即可通关。通关后可选择继续挑战下一关或返回首页。初级场（1-10关）时间宽松，中级场（11-30关）时间适中，高级场（31关及以上）时间更紧张，关卡无限。</text>
+  </view>
+</view>
+

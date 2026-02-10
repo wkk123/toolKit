@@ -1,0 +1,56 @@
+<view class="container">
+  <view class="header">
+    <view class="title">五子棋</view>
+    <view class="subtitle">连成五子即可获胜</view>
+  </view>
+
+  <view class="info-bar">
+    <view class="info-item">
+      <view class="player-info {{currentPlayer === 'black' ? 'active' : ''}}">
+        <view class="piece-preview black"></view>
+        <text class="player-name">你（黑棋）</text>
+        <text class="piece-count">{{blackCount}}</text>
+      </view>
+    </view>
+    <view class="info-item">
+      <view class="player-info {{currentPlayer === 'white' ? 'active' : ''}}">
+        <view class="piece-preview white"></view>
+        <text class="player-name">电脑（白棋）</text>
+        <text class="piece-count">{{whiteCount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="board-container">
+    <view class="board">
+      <view 
+        class="row"
+        wx:for="{{board}}"
+        wx:for-item="row"
+        wx:for-index="rowIndex"
+        wx:key="row-{{rowIndex}}"
+      >
+        <view 
+          class="cell {{cell === 'black' ? 'black' : cell === 'white' ? 'white' : ''}}"
+          wx:for="{{row}}"
+          wx:for-item="cell"
+          wx:for-index="colIndex"
+          wx:key="cell-{{rowIndex}}-{{colIndex}}"
+          data-row="{{rowIndex}}"
+          data-col="{{colIndex}}"
+          bindtap="onCellTap"
+        >
+          <view class="piece" wx:if="{{cell !== null}}"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="buttons">
+    <button class="btn" bindtap="restart">重新开始</button>
+  </view>
+
+  <view class="tips">
+    <text>提示：你是黑棋，电脑是白棋。点击棋盘下棋，横、竖、斜任意方向连成五子即可获胜。</text>
+  </view>
+</view>

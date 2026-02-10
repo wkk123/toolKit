@@ -8,32 +8,33 @@
     </view>
   </view>
 
-  <!-- 游戏列表 -->
+  <!-- 游戏列表（status 为 hidden 的不展示） -->
   <view class="game-list">
-    <view 
-      class="game-item" 
-      wx:for="{{games}}" 
-      wx:key="id"
-      data-game-id="{{item.id}}"
-      bindtap="onGameTap"
-      style="border-left-color: {{item.color}}"
-    >
-      <view class="game-icon-wrapper" style="background: linear-gradient(135deg, {{item.color}} 0%, {{item.color}}dd 100%);">
-        <text class="game-icon">{{item.icon}}</text>
-      </view>
-      <view class="game-content">
-        <view class="game-header">
-          <text class="game-title">{{item.title}}</text>
-          <view wx:if="{{item.status === 'coming-soon'}}" class="game-badge">
-            <text class="badge-text">即将上线</text>
-          </view>
+    <block wx:for="{{games}}" wx:key="id">
+      <view 
+        wx:if="{{item.status !== 'hidden'}}"
+        class="game-item" 
+        data-game-id="{{item.id}}"
+        bindtap="onGameTap"
+        style="border-left-color: {{item.color}}"
+      >
+        <view class="game-icon-wrapper" style="background: linear-gradient(135deg, {{item.color}} 0%, {{item.color}}dd 100%);">
+          <text class="game-icon">{{item.icon}}</text>
         </view>
-        <text class="game-desc">{{item.desc}}</text>
+        <view class="game-content">
+          <view class="game-header">
+            <text class="game-title">{{item.title}}</text>
+            <view wx:if="{{item.status === 'coming-soon'}}" class="game-badge">
+              <text class="badge-text">即将上线</text>
+            </view>
+          </view>
+          <text class="game-desc">{{item.desc}}</text>
+        </view>
+        <view class="game-arrow">
+          <text class="arrow-icon">›</text>
+        </view>
       </view>
-      <view class="game-arrow">
-        <text class="arrow-icon">›</text>
-      </view>
-    </view>
+    </block>
   </view>
 
   <!-- 底部提示 -->
