@@ -197,6 +197,29 @@ Page({
     return false
   },
 
+  /**
+   * 在当前局面下，检查是否还有可连通的牌；
+   * 如果没有，则对剩余牌进行重新洗牌，直到存在至少一对可连通的牌
+   */
+  ensureCurrentBoardHasMoves() {
+    const { rows, cols } = this.data
+    const currentTiles = [...this.data.tiles]
+    const grid = this.buildGridWithTiles(rows, cols, currentTiles)
+
+    if (this.hasAnyConnectablePair(grid, currentTiles, rows, cols)) {
+      // 当前局面本身有解，无需处理
+      return
+    }
+
+    // 对剩余牌重新洗牌，直到找到至少一对可连通的组合
+    const reshuffled = this.ensureHasConnectablePairs(currentTiles, rows, cols)
+    this.setData({
+      tiles: reshuffled,
+      pathIndices: [],
+      firstSelectedIndex: -1
+    })
+  },
+
   // 点击方块
   onTileTap(e: WechatMiniprogram.TouchEvent) {
     if (this.data.gameStatus !== 'playing') return
@@ -287,6 +310,9 @@ Page({
           // 检查是否全部消除
           if (newRemovedCount >= this.data.rows * this.data.cols) {
             this.onGameCompleted()
+          } else {
+            // 未全部消除时，检查牌面是否还有可连通的牌；若没有，则对剩余牌进行安全洗牌
+            this.ensureCurrentBoardHasMoves()
           }
         }, 200)
         return
