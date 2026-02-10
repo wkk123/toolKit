@@ -86,7 +86,9 @@ Page({
       })
     }
 
-    const shuffled = this.shuffleArray(tiles)
+    // 随机洗牌，并保证初始局面至少存在一对可连通的牌
+    let shuffled = this.shuffleArray(tiles)
+    shuffled = this.ensureHasConnectablePairs(shuffled, rows, cols)
     
     // 重置计时器并启动
     this.clearTimer()
@@ -115,6 +117,84 @@ Page({
       ;[res[i], res[j]] = [res[j], res[i]]
     }
     return res
+  },
+
+  /**
+   * 确保生成的局面中至少存在一对可连通的牌
+   * 为避免极端情况，限制最大尝试次数
+   */
+  ensureHasConnectablePairs(tiles: Tile[], rows: number, cols: number): Tile[] {
+    const maxAttempts = 40
+    let attempt = 0
+    let current = [...tiles]
+
+    while (attempt < maxAttempts) {
+      const grid = this.buildGridWithTiles(rows, cols, current)
+      if (this.hasAnyConnectablePair(grid, current, rows, cols)) {
+        return current
+      }
+      current = this.shuffleArray(current)
+      attempt++
+    }
+
+    // 超过最大尝试次数，返回当前结果（极少出现）
+    return current
+  },
+
+  // 使用指定 tiles 构建网格（不依赖 this.data.tiles）
+  buildGridWithTiles(rows: number, cols: number, tiles: Tile[]): number[][] {
+    const grid: number[][] = []
+    const totalRows = rows + 2
+    const totalCols = cols + 2
+
+    for (let r = 0; r < totalRows; r++) {
+      const row: number[] = []
+      for (let c = 0; c < totalCols; c++) {
+        row.push(0)
+      }
+      grid.push(row)
+    }
+
+    tiles.forEach((tile, index) => {
+      const coord = this.indexToCoord(index, cols)
+      const gr = coord.row + 1
+      const gc = coord.col + 1
+      if (tile.status !== 'removed') {
+        grid[gr][gc] = tile.id + 1
+      }
+    })
+
+    return grid
+  },
+
+  // 判断当前局面中是否存在至少一对可连通的牌
+  hasAnyConnectablePair(grid: number[][], tiles: Tile[], rows: number, cols: number): boolean {
+    const total = tiles.length
+
+    for (let i = 0; i < total; i++) {
+      const a = tiles[i]
+      if (!a || a.status === 'removed') continue
+      for (let j = i + 1; j < total; j++) {
+        const b = tiles[j]
+        if (!b || b.status === 'removed') continue
+        if (a.id !== b.id) continue
+
+        const pos1 = this.indexToCoord(i, cols)
+        const pos2 = this.indexToCoord(j, cols)
+        const canLink = this.canConnect(
+          grid,
+          pos1.row + 1,
+          pos1.col + 1,
+          pos2.row + 1,
+          pos2.col + 1
+        )
+        if (canLink) {
+          return true
+        }
+      }
+    }
+
+    return false
   },
 
   // 点击方块
@@ -375,7 +455,7 @@ Page({
     }
 
     const totalRows = grid.length
-    const totalCols = grid[0]?.length || 0
+    const totalCols = grid[0] ? grid[0].length : 0
 
     // 2 折：通过一个中转行
     for (let r = 0; r < totalRows; r++) {
