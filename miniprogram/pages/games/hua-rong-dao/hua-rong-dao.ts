@@ -28,6 +28,18 @@ Page({
     this.initGame()
   },
 
+  onShow() {
+    // 页面重新可见且处于进行中时，如果没有计时器，则从剩余时间恢复倒计时
+    if (!this.timer && !this.data.isCompleted && this.data.timeLeft > 0) {
+      this.startTimer(this.data.timeLeft)
+    }
+  },
+
+  onHide() {
+    // 离开页面时停止计时器
+    this.clearTimer()
+  },
+
   // 初始化棋盘（根据当前关卡设置棋盘与时间）
   initGame() {
     const size = this.getBoardSizeForLevel(this.data.level)

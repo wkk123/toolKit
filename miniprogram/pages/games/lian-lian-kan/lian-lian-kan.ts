@@ -39,6 +39,19 @@ Page({
     this.initGame()
   },
 
+  onShow() {
+    // 页面重新可见时，如果处于进行中但没有计时器，则从剩余时间重新启动倒计时
+    const timer = (this as any).timer
+    if (!timer && this.data.gameStatus === 'playing' && this.data.timeLeft > 0) {
+      this.startTimer(this.data.timeLeft)
+    }
+  },
+
+  onHide() {
+    // 离开页面时停止计时器
+    this.clearTimer()
+  },
+
   // 初始化游戏
   initGame() {
     const { rows, cols, difficulty, timeLimit, iconPoolSize } = this.getConfigForLevel(this.data.level)
